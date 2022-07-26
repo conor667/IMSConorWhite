@@ -1,5 +1,7 @@
 package com.qa.ims.persistence.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.utils.DBUtils;
 
 public class ItemDAO implements Dao<Item>{
 	
@@ -53,8 +56,10 @@ public class ItemDAO implements Dao<Item>{
 
 	@Override
 	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Long id = resultSet.getLong("id");
+		String itemName = resultSet.getItemname("Item_Name");
+		double price = resultSet.getPrice("Price");
+		return new Customer(id, itemName, price);
 	}
 
 	@Override
@@ -64,8 +69,18 @@ public class ItemDAO implements Dao<Item>{
 	}
 
 	@Override
-	public Item create(Item t) {
-		// TODO Auto-generated method stub
+	public Item create(Item item) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("INSERT INTO customers(first_name, surname) VALUES (?, ?)");) {
+			statement.setString(1, item.getItemname());
+			statement.setDouble(2, item.getPrice());
+			statement.executeUpdate();
+			return readLatest();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
