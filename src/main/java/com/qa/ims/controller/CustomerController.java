@@ -51,7 +51,6 @@ public class CustomerController implements CrudController<Customer> {
 		LOGGER.info("Customer created");
 		return customer;
 	}
-
 	/**
 	 * Updates an existing customer by taking in user input
 	 */

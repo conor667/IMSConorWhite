@@ -10,7 +10,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.DBUtils;
 
@@ -32,10 +31,10 @@ public class ItemDAO implements Dao<Item>{
 	}
 
 	@Override
-	public Customer readLatest() {
+	public Item readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM customers ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM item ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -72,6 +71,18 @@ public class ItemDAO implements Dao<Item>{
 	public int delete(long id) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Item read(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
