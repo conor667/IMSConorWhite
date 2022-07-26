@@ -43,7 +43,7 @@ public class ItemController implements CrudController<Item>{
 	public Item update() {
 		LOGGER.info("Please enter the id of the customer you would like to update");
 		Long id = utils.getLong();
-		LOGGER.info("Please enter a an Item name");
+		LOGGER.info("Please enter an Item name");
 		String itemName = utils.getString();
 		LOGGER.info("Please enter a new Price");
 		double price = utils.getDouble();
