@@ -44,6 +44,20 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return new ArrayList<>();
 	}
+	
+	@Override
+	public Order readLatest() {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM order ORDER BY id DESC LIMIT 1");) {
+			resultSet.next();
+			return modelFromResultSet(resultSet);
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
 
 	@Override
 	public Order read(Long id) {
@@ -68,11 +82,4 @@ public class OrderDAO implements Dao<Order> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public Order readLatest() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
