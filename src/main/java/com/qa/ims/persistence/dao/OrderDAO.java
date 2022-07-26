@@ -61,7 +61,7 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order read(Long id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -100,7 +100,6 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return null;
 	}
-
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
