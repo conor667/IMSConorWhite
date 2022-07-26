@@ -5,22 +5,22 @@ import java.util.Objects;
 public class Order {
 
 	private Long id;
-	private Long itemID;
+	private Long itemId;
 	private Long customerId;
 	private Long quantity; 
 	private Long totalCost;
 	
-	public Order(Long id, Long itemID, Long customerId, Long quantity, Long totalCost) {
+	public Order(Long id, Long itemId, Long customerId, Long quantity, Long totalCost) {
 		super();
 		this.id = id;
-		this.itemID = itemID;
+		this.itemId = itemId;
 		this.customerId = customerId;
 		this.quantity = quantity;
 		this.totalCost = totalCost;
 	}
-	public Order(Long itemID, Long customerId, Long quantity, Long totalCost) {
+	public Order(Long itemId, Long customerId, Long quantity, Long totalCost) {
 		super();
-		this.itemID = itemID;
+		this.itemId = itemId;
 		this.customerId = customerId;
 		this.quantity = quantity;
 		this.totalCost = totalCost;
@@ -32,16 +32,16 @@ public class Order {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getItemID() {
-		return itemID;
+	public Long getItemId() {
+		return itemId;
 	}
-	public void setItemID(Long itemID) {
-		this.itemID = itemID;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
-	public Long getCustomerID() {
+	public Long getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerID(Long customerId) {
+	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
 	public Long getQuantity() {
@@ -58,12 +58,12 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", itemID=" + itemID + ", customerId=" + customerId + ", quantity=" + quantity
+		return "Order [id=" + id + ", itemID=" + itemId + ", customerId=" + customerId + ", quantity=" + quantity
 				+ ", totalCost=" + totalCost + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(customerId, id, itemID, quantity, totalCost);
+		return Objects.hash(customerId, id, itemId, quantity, totalCost);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -75,7 +75,7 @@ public class Order {
 			return false;
 		Order other = (Order) obj;
 		return Objects.equals(customerId, other.customerId) && Objects.equals(id, other.id)
-				&& Objects.equals(itemID, other.itemID) && Objects.equals(quantity, other.quantity)
+				&& Objects.equals(itemId, other.itemId) && Objects.equals(quantity, other.quantity)
 				&& Objects.equals(totalCost, other.totalCost);
 	}
 

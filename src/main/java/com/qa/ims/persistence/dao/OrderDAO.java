@@ -11,7 +11,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
@@ -71,8 +70,8 @@ public class OrderDAO implements Dao<Order> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO item(itemID, customerID, quantity) VALUES (?, ?, ?)");) {
-			statement.setLong(1, order.getItemID());
-			statement.setLong(2, order.getCustomerID());
+			statement.setLong(1, order.getItemId());
+			statement.setLong(2, order.getCustomerId());
 			statement.setLong(3, order.getQuantity());
 			statement.executeUpdate();
 			return readLatest();
@@ -84,8 +83,21 @@ public class OrderDAO implements Dao<Order> {
 	}
 
 	@Override
-	public Order update(Order t) {
+	public Order update(Order order) {
 		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("UPDATE order SET itemID = ?, customerId = ? WHERE id = ?");) {
+			statement.setLong(1, order.getItemId());
+			statement.setLong(2, order.getCustomerId());
+			statement.setLong(3, order.getQuantity());
+			statement.setLong(4, order.getId());
+			statement.executeUpdate();
+			return read(order.getId());
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
