@@ -6,18 +6,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.CustomerDAO;
+import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.utils.Utils;
 
 public class ItemController implements CrudController<Item>{
 	
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	private ItemDAO ItemDAO;
+	private ItemDAO itemDAO;
 	private Utils utils;
 	
 	public ItemController(CustomerDAO customerDAO, Utils utils) {
 		super();
-		this.customerDAO = customerDAO;
+		this.ItemDAO = itemDAO;
 		this.utils = utils;
 
 	@Override
