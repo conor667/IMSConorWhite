@@ -59,7 +59,7 @@ public class ItemDAO implements Dao<Item>{
 	public Item create(Item item) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO items(itemName, price) VALUES (?, ?)");) {
+						.prepareStatement("INSERT INTO item(itemName, price) VALUES (?, ?)");) {
 			statement.setString(1, item.getItemname());
 			statement.setDouble(2, item.getPrice());
 			statement.executeUpdate();
@@ -105,7 +105,17 @@ public class ItemDAO implements Dao<Item>{
 
 	@Override
 	public Item read(Long id) {
-		// TODO Auto-generated method stub
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM item WHERE id = ?");) {
+			statement.setLong(1, id);
+			try (ResultSet resultSet = statement.executeQuery();) {
+				resultSet.next();
+				return modelFromResultSet(resultSet);
+			}
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
