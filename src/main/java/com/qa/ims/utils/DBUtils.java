@@ -30,9 +30,9 @@ public class DBUtils {
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}
-		this.dbUrl = dbProps.getProperty("jdbc:mysql://127.0.0.1:3306/?user=root");
-		this.dbUser = dbProps.getProperty("db.user", "root");
-		this.dbPassword = dbProps.getProperty("db.password", "root");
+		this.dbUrl = dbProps.getProperty("db.url", "");
+		this.dbUser = dbProps.getProperty("db.user", "");
+		this.dbPassword = dbProps.getProperty("db.password", "");
 	}
 
 	public DBUtils() {
