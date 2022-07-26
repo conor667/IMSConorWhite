@@ -38,10 +38,10 @@ public class Order {
 	public void setItemID(Long itemID) {
 		this.itemID = itemID;
 	}
-	public Long getCustomerId() {
+	public Long getCustomerID() {
 		return customerId;
 	}
-	public void setCustomerId(Long customerId) {
+	public void setCustomerID(Long customerId) {
 		this.customerId = customerId;
 	}
 	public Long getQuantity() {
