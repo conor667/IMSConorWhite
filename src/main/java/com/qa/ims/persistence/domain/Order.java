@@ -18,12 +18,11 @@ public class Order {
 		this.quantity = quantity;
 		this.totalCost = totalCost;
 	}
-	public Order(Long itemId, Long customerId, Long quantity, Long totalCost) {
+	public Order(Long itemId, Long customerId, Long quantity) {
 		super();
 		this.itemId = itemId;
 		this.customerId = customerId;
 		this.quantity = quantity;
-		this.totalCost = totalCost;
 	}
 	
 	public Long getId() {
