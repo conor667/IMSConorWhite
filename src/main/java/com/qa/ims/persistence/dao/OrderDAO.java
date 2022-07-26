@@ -61,7 +61,17 @@ public class OrderDAO implements Dao<Order> {
 
 	@Override
 	public Order read(Long id) {
-		
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM order WHERE id = ?");) {
+			statement.setLong(1, id);
+			try (ResultSet resultSet = statement.executeQuery();) {
+				resultSet.next();
+				return modelFromResultSet(resultSet);
+			}
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
 		return null;
 	}
 
