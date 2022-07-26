@@ -25,6 +25,11 @@ public class Order {
 		this.quantity = quantity;
 	}
 	
+	public Order(Long id, Long itemId) {
+		this.id = id;
+		this.itemId = itemId;
+	}
+	
 	public Long getId() {
 		return id;
 	}
