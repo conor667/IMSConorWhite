@@ -22,7 +22,6 @@ public class OrderDAO implements Dao<Order> {
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customerId");
-	
 		return new Order(id, customerId);
 	}
 
@@ -92,7 +91,7 @@ public class OrderDAO implements Dao<Order> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO `OrderedItems` (Orderid,itemId, Quantity) VALUES (?, ?, ?)");) {
-			statement.setLong(1, readLatest().getId());
+			statement.setLong(1, order.getId());
 			statement.setLong(2, order.getItemId());
 			statement.setLong(3, order.getQuantity());
 			statement.executeUpdate();
