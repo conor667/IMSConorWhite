@@ -23,16 +23,20 @@ public class Order {
 		this.quantity = quantity;
 		this.totalCost = totalCost;
 	}
-	public Order(Long customerId, Long itemId, Long quantity) {
-		this.itemId = itemId;
-		this.customerId = customerId;
-		this.quantity = quantity;
-	}
+;
 	public Order(Long id, Long itemId) {
 		this.id = id;
 		this.itemId = itemId;
 	}
+	public Order(Long id, Long itemId, Long quantity) {
+		this.id = id;
+		this.itemId = itemId;
+		this.quantity = quantity;
+	}
 	
+	public Order(Long customerId) {
+		this.customerId = customerId;
+	}
 	public Long getId() {
 		return id;
 	}
