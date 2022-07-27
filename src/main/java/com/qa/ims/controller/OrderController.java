@@ -24,9 +24,7 @@ public class OrderController implements CrudController<Order>{
 	@Override
 	public List<Order> readAll() {
 		List<Order> orders = orderDAO.readAll();
-		for (Order order : orders) {
-			LOGGER.info(order);
-		}
+
 		return orders;
 	}
 	@Override
