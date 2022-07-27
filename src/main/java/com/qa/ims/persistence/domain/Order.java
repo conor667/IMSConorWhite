@@ -11,20 +11,23 @@ public class Order {
 	private double totalCost;
 	
 	public Order(Long id, Long itemId, Long customerId, Long quantity, double totalCost) {
-		super();
 		this.id = id;
 		this.itemId = itemId;
 		this.customerId = customerId;
 		this.quantity = quantity;
 		this.totalCost = totalCost;
 	}
+	public Order(Long itemId, Long customerId, Long quantity, double totalCost) {
+		this.itemId = itemId;
+		this.customerId = customerId;
+		this.quantity = quantity;
+		this.totalCost = totalCost;
+	}
 	public Order(Long itemId, Long customerId, Long quantity) {
-		super();
 		this.itemId = itemId;
 		this.customerId = customerId;
 		this.quantity = quantity;
 	}
-	
 	public Order(Long id, Long itemId) {
 		this.id = id;
 		this.itemId = itemId;
