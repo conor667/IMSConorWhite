@@ -10,7 +10,7 @@ public class Order {
 	private Long quantity; 
 	private double totalCost;
 	
-	public Order(Long id, Long itemId, Long customerId, Long quantity, double totalCost) {
+	public Order(Long id, Long customerId, Long itemId, Long quantity, double totalCost) {
 		this.id = id;
 		this.itemId = itemId;
 		this.customerId = customerId;
@@ -65,7 +65,7 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", itemID=" + itemId + ", customerId=" + customerId + ", quantity=" + quantity
+		return "Order [id=" + getId() + ", itemID=" + getItemId() + ", customerId=" + getCustomerId() + ", quantity=" + getQuantity()
 				+ "]";
 	}
 	@Override
