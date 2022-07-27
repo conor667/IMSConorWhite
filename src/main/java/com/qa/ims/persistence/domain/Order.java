@@ -66,7 +66,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", itemID=" + itemId + ", customerId=" + customerId + ", quantity=" + quantity
-				+ ", totalCost=" + totalCost + "]";
+				+ "]";
 	}
 	@Override
 	public int hashCode() {

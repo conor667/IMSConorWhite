@@ -24,6 +24,14 @@ public class OrderDAO implements Dao<Order> {
 		Long customerId = resultSet.getLong("customerId");
 		return new Order(id, customerId);
 	}
+	@Override
+	public Order modelFromResultSet1(ResultSet resultSet) throws SQLException {
+		Long id = resultSet.getLong("id");
+		Long customerId = resultSet.getLong("CustomerId");
+		Long itemId = resultSet.getLong("itemId");
+		long quantity = resultSet.getLong("Quantity");
+		return new Order(id, customerId, itemId, quantity);
+	}
 
 	@Override
 	public List<Order> readAll() {
@@ -32,7 +40,7 @@ public class OrderDAO implements Dao<Order> {
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` c JOIN OrderedItems o ON c.id=o.OrderId");) {
 			List<Order> order = new ArrayList<>();
 			while (resultSet.next()) {
-				order.add(modelFromResultSet(resultSet));
+				order.add(modelFromResultSet1(resultSet));
 			}
 			return order;
 		} catch (SQLException e) {
@@ -86,7 +94,7 @@ public class OrderDAO implements Dao<Order> {
 		}
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO ordereditems (OrderId,itemId, Quantity) VALUES (?, ?, ?)");) {
+						.prepareStatement("INSERT INTO ordereditems (Orderid ,itemId, Quantity) VALUES (?, ?, ?)");) {
 			statement.setLong(1, readLatest().getId());
 			statement.setLong(2, order.getItemId());
 			statement.setLong(3, order.getQuantity());

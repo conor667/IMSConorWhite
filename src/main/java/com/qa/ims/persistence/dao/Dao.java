@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.qa.ims.persistence.domain.Order;
+
 public interface Dao<T> {
 
 	List<T> readAll();
@@ -19,4 +21,6 @@ public interface Dao<T> {
 	T modelFromResultSet(ResultSet resultSet) throws SQLException;
 
 	T readLatest();
+
+	Order modelFromResultSet1(ResultSet resultSet) throws SQLException;
 }
