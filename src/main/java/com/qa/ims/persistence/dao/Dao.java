@@ -21,6 +21,4 @@ public interface Dao<T> {
 	T modelFromResultSet(ResultSet resultSet) throws SQLException;
 
 	T readLatest();
-
-	Order modelFromResultSet1(ResultSet resultSet) throws SQLException;
 }

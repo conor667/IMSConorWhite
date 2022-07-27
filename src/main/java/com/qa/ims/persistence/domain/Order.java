@@ -33,6 +33,9 @@ public class Order {
 		this.itemId = itemId;
 	}
 	
+	public Order(Long customerId) {
+		this.customerId = customerId;
+	}
 	public Long getId() {
 		return id;
 	}

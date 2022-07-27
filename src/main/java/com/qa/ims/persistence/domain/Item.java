@@ -6,16 +6,19 @@ public class Item {
 	private Long id;
 	private String Itemname;
 	private double price;
+	private Long stock;
 
-	public Item(String itemname, double price) {
+	public Item(String itemname, double price, Long stock) {
 		this.setItemname(itemname);
 		this.setPrice(price);
+		this.setStock(stock);
 	}
 
-	public Item(Long id, String Itemname, double price) {
+	public Item(Long id, String Itemname, double price, Long stock) {
 		this.setId(id);
 		this.setItemname(Itemname);
 		this.setPrice(price);
+		this.setStock(stock);
 	}
 
 	public Long getId() {
@@ -42,9 +45,17 @@ public class Item {
 		this.price = price;
 	}
 
+	public Long getStock() {
+		return stock;
+	}
+
+	public void setStock(Long stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", Itemname=" + Itemname + ", price=" + price + "]";
+		return "Item [id=" + id + ", Itemname =" + Itemname + ", price =" + price + ", Stock = " + stock  + "]";
 	}
 
 	@Override
@@ -62,6 +73,11 @@ public class Item {
 				return Objects.equals(Itemname, other.Itemname) 
 						&& Objects.equals(id, other.id)
 						&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price);
+	}
+
+	public void setQuantity(long long1) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
