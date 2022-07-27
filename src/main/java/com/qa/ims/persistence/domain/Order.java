@@ -35,6 +35,8 @@ public class Order {
 	public Order(Long customerId) {
 		this.customerId = customerId;
 	}
+	public Order(Double totalCost) {
+	}
 	public Long getId() {
 		return id;
 	}

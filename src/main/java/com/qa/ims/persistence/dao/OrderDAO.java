@@ -24,6 +24,12 @@ public class OrderDAO implements Dao<Order> {
 		Long customerId = resultSet.getLong("customerId");
 		return new Order(id, customerId);
 	}
+	
+	@Override
+	public Order modelFromResultSet2(ResultSet resultSet) throws SQLException {
+		Double totalCost = resultSet.getDouble("TotalCost");
+		return new Order(totalCost);
+	}
 
 	@Override
 	public List<Order> readAll() { 
@@ -48,7 +54,7 @@ public class OrderDAO implements Dao<Order> {
 				ResultSet resultSet = statement.executeQuery("SELECT item.price*OrderedItems.quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");) {
 			List<Order> order = new ArrayList<>();
 			while (resultSet.next()) {
-				order.add(modelFromResultSet(resultSet));
+				order.add(modelFromResultSet2(resultSet));
 				LOGGER.info("| TotalCost : " + resultSet.getDouble("TotalCost"));
 			}
 			return order;
