@@ -21,7 +21,6 @@ public class OrderController implements CrudController<Order>{
 		this.orderDAO = orderDAO;
 		this.utils = utils;
 	}
-
 	@Override
 	public List<Order> readAll() {
 		List<Order> orders = orderDAO.readAll();
@@ -30,7 +29,6 @@ public class OrderController implements CrudController<Order>{
 		}
 		return orders;
 	}
-
 	@Override
 	public Order create() {
 		LOGGER.info("Please enter the customerId");
@@ -39,7 +37,6 @@ public class OrderController implements CrudController<Order>{
 		LOGGER.info("Order created! \n");
 		return order;
 	}
-
 	@Override
 	public Order update() {
 		LOGGER.info("Please enter the id of the Order you would like to update");
@@ -52,7 +49,6 @@ public class OrderController implements CrudController<Order>{
 		LOGGER.info("Order Updated \n");
 		return order;
 	}
-
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the Order you would like to delete from your Order");
