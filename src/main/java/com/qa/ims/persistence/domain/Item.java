@@ -21,6 +21,11 @@ public class Item {
 		this.setStock(stock);
 	}
 
+	public Item(Long price2, Long stock2, String itemName2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -76,6 +81,11 @@ public class Item {
 	}
 
 	public void setQuantity(long long1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void add(Item item) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -7,12 +7,12 @@ id  bigint KEY auto_increment ,
 first_name varchar(20) ,
 surname varchar(20) 
 );
-DROP TABLE customers;
 
 CREATE TABLE item (
-id bigint Key auto_increment,
+ItemId bigint Key auto_increment,
 itemName varchar(20),
-price double
+price double,
+stock int
 );
 
 CREATE TABLE `order` (
@@ -20,22 +20,13 @@ OrderId bigint KEY AUTO_increment,
 CustomerId bigint ,
 FOREIGN KEY (CustomerId) references customers(id)
 );
-DROP TABLE `order`;
-
-SELECT * FROM customers;
-SELECT * FROM item;
-SELECT * FROM `order`;
-SELECT * FROM OrderedItems;
-
 Create TABLE OrderedItems (
 Id bigint key auto_increment,
-OrderId bigint ,
-ItemId bigint,
+fk_OrderId bigint ,
+fk_itemId bigint,
 Quantity int,
-FOREIGN KEY (OrderId) references `order`(OrderId),
-FOREIGN KEY (ItemId) references item (id)
+TotalCost int,
+FOREIGN KEY (fk_OrderId) references `order`(OrderId),
+FOREIGN KEY (fk_ItemId) references item(ItemId)
 );
-DROP TABLE OrderedItems;
 
-SELECT * FROM customers;
-SELECT * FROM `order`;

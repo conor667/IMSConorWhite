@@ -24,22 +24,6 @@ public class OrderDAO implements Dao<Order> {
 		Long customerId = resultSet.getLong("customerId");
 		return new Order(id, customerId);
 	}
-	@Override
-	public Order modelFromResultSetReadAll(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("OrderId");
-		Long customerId = resultSet.getLong("customerId");
-		resultSet.getLong("Id");
-		resultSet.getLong("fk_OrderId");
-		resultSet.getLong("fk_itemId");
-		resultSet.getLong("Quantity");
-		resultSet.getLong("TotalCost");
-		resultSet.getLong("ItemId");
-		resultSet.getString("itemName");
-		resultSet.getLong("price");
-		resultSet.getLong("stock");
-		return new Order(id, customerId);
-	}
-
 
 	@Override
 	public List<Order> readAll() {
@@ -48,7 +32,8 @@ public class OrderDAO implements Dao<Order> {
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` o JOIN OrderedItems oi ON o.OrderId=oi.fk_OrderId JOIN item i ON i.itemId=oi.id");) {
 			List<Order> orders = new ArrayList<>();
 			while (resultSet.next()) {
-				orders.add(modelFromResultSetReadAll(resultSet));
+				orders.add(modelFromResultSet(resultSet));
+				LOGGER.info(resultSet);
 			}
 			return orders;
 		} catch (SQLException e) {

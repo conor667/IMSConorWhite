@@ -123,10 +123,4 @@ public class ItemDAO implements Dao<Item>{
 		return null;
 	}
 
-	@Override
-	public Order modelFromResultSetReadAll(ResultSet resultSet) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
