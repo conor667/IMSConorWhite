@@ -23,7 +23,7 @@ public class Order {
 		this.quantity = quantity;
 		this.totalCost = totalCost;
 	}
-	public Order(Long itemId, Long customerId, Long quantity) {
+	public Order(Long customerId, Long itemId, Long quantity) {
 		this.itemId = itemId;
 		this.customerId = customerId;
 		this.quantity = quantity;

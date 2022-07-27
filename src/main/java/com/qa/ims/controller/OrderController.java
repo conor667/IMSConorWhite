@@ -33,13 +33,13 @@ public class OrderController implements CrudController<Order>{
 
 	@Override
 	public Order create() {
-		LOGGER.info("Please enter ItemId");
-		Long itemId = utils.getLong();
-		LOGGER.info("Please your customerId");
+		LOGGER.info("Please enter the customerId");
 		Long customerId = utils.getLong();
-		LOGGER.info("Please enter the quantity you would like");
+		LOGGER.info("Please enter the Itemid");
+		Long itemId = utils.getLong();
+		LOGGER.info("Please enter the quantity you would like to add");
 		Long quantity = utils.getLong();
-		Order order = orderDAO.create(new Order(itemId,customerId,quantity));
+		Order order = orderDAO.create(new Order(customerId,itemId,quantity));
 		LOGGER.info("Order created! \n");
 		return order;
 	}
@@ -50,7 +50,9 @@ public class OrderController implements CrudController<Order>{
 		Long id = utils.getLong();
 		LOGGER.info("Please the Itemid");
 		Long itemId = utils.getLong();
-		Order order = orderDAO.update(new Order(id, itemId));
+		LOGGER.info("Please enter new quantity");
+		Long Quantity = utils.getLong();
+		Order order = orderDAO.update(new Order(id, itemId, Quantity));
 		LOGGER.info("Order Updated \n");
 		return order;
 	}

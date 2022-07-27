@@ -1,14 +1,13 @@
-drop schema ims;
+CREATE DATABASE ims;
 
-CREATE SCHEMA IF NOT EXISTS `ims`;
-
-USE `ims` ;
+USE ims;
 
 CREATE TABLE customers (
 id  bigint KEY auto_increment ,
 first_name varchar(20) ,
 surname varchar(20) 
 );
+DROP TABLE customers;
 
 CREATE TABLE item (
 id bigint Key auto_increment,
@@ -17,14 +16,26 @@ price double
 );
 
 CREATE TABLE `order` (
-OrderID bigint KEY AUTO_increment,
-CustomerID bigint ,
-TotalCost int,
-DateOrdered DATE
+OrderId bigint KEY AUTO_increment,
+CustomerId bigint ,
+FOREIGN KEY (CustomerId) references customers(id)
 );
+DROP TABLE `order`;
+
+SELECT * FROM customers;
+SELECT * FROM item;
+SELECT * FROM `order`;
+SELECT * FROM OrderedItems;
 
 Create TABLE OrderedItems (
-OrdereditemsId bigint key auto_increment,
-OrderId int,
-Quantity int
+Id bigint key auto_increment,
+OrderId bigint ,
+ItemId bigint,
+Quantity int,
+FOREIGN KEY (OrderId) references `order`(OrderId),
+FOREIGN KEY (ItemId) references item (id)
 );
+DROP TABLE OrderedItems;
+
+SELECT * FROM customers;
+SELECT * FROM `order`;
