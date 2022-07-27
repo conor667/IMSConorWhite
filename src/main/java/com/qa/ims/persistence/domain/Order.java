@@ -8,9 +8,9 @@ public class Order {
 	private Long itemId;
 	private Long customerId;
 	private Long quantity; 
-	private Long totalCost;
+	private double totalCost;
 	
-	public Order(Long id, Long itemId, Long customerId, Long quantity, Long totalCost) {
+	public Order(Long id, Long itemId, Long customerId, Long quantity, double totalCost) {
 		super();
 		this.id = id;
 		this.itemId = itemId;
@@ -54,10 +54,10 @@ public class Order {
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
-	public Long getTotalCost() {
+	public double getTotalCost() {
 		return totalCost;
 	}
-	public void setTotalCost(Long totalCost) {
+	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
 	@Override

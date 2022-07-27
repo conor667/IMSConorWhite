@@ -12,48 +12,60 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemController;
+import com.qa.ims.controller.OrderController;
+import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.ItemDAO;
+import com.qa.ims.persistence.dao.OrderDAO;
+import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ItemControllerTest {
+public class OrderControllerTest {
 
 	@Mock
 	private Utils utils;
 
 	@Mock
-	private ItemDAO dao;
+	private OrderDAO dao;
 
 	@InjectMocks
-	private ItemController controller;
+	private OrderController controller;
 
 	@Test
 	public void testCreate() {
-		final String item = "spoon";
-		final double price = 3.99;
-		final Item created = new Item(item, price);
+		final Long Id = 2L; 
+		final Long itemId = 1L;
+		final Long customerId = 2L;
+		final Long quantity = 2L;
+		final double totalCost = 3.99; 
+		final Order created = new Order(Id, itemId, customerId, quantity, totalCost);
 
-		Mockito.when(utils.getString()).thenReturn(item);
-		Mockito.when(utils.getDouble()).thenReturn(price);
+		Mockito.when(utils.getLong()).thenReturn(Id);
+		Mockito.when(utils.getLong()).thenReturn(itemId);
+		Mockito.when(utils.getLong()).thenReturn(customerId);
+		Mockito.when(utils.getLong()).thenReturn(quantity);
+		Mockito.when(utils.getDouble()).thenReturn(totalCost);
 		Mockito.when(dao.create(created)).thenReturn(created);
 
 		assertEquals(created, controller.create());
 
-		Mockito.verify(utils, Mockito.times(1)).getString();
+		Mockito.verify(utils, Mockito.times(4)).getLong();
 		Mockito.verify(utils, Mockito.times(1)).getDouble();
 		Mockito.verify(dao, Mockito.times(1)).create(created);
 	}
 
 	@Test
 	public void testReadAll() {
-		List<Item> item = new ArrayList<>();
-		item.add(new Item(1L, "apple", 1.99));
+		List<Order> order = new ArrayList<>();
+		order.add(new Order(1L, 1L , 2L, 2L ,3.99));
 
-		Mockito.when(dao.readAll()).thenReturn(item);
+		Mockito.when(dao.readAll()).thenReturn(order);
 
-		assertEquals(item, controller.readAll());
+		assertEquals(order, controller.readAll());
 
 		Mockito.verify(dao, Mockito.times(1)).readAll();
 	}
