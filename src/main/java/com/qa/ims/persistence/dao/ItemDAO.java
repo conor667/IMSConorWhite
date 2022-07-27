@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
 public class ItemDAO implements Dao<Item>{
@@ -18,7 +19,7 @@ public class ItemDAO implements Dao<Item>{
 	public static final Logger LOGGER = LogManager.getLogger();
 	
 	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("id");
+		Long id = resultSet.getLong("ItemId");
 		String Itemname = resultSet.getString("Itemname");
 		float price = resultSet.getFloat("price");
 		Long stock = resultSet.getLong("stock");
@@ -46,7 +47,7 @@ public class ItemDAO implements Dao<Item>{
 	public Item readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM item ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM item ORDER BY ItemId DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -79,7 +80,7 @@ public class ItemDAO implements Dao<Item>{
 		// TODO Auto-generated method stub
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE item SET itemName = ?, price = ?, stock = ? WHERE id = ?");) {
+						.prepareStatement("UPDATE item SET itemName = ?, price = ?, stock = ? WHERE ItemId = ?");) {
 			statement.setString(1, item.getItemname());
 			statement.setDouble(2, item.getPrice());
 			statement.setLong(3,item.getStock());
@@ -96,7 +97,7 @@ public class ItemDAO implements Dao<Item>{
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("DELETE FROM item WHERE id = ?");) {
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM item WHERE ItemId = ?");) {
 			statement.setLong(1, id);
 			return statement.executeUpdate();
 		} catch (Exception e) {
@@ -109,7 +110,7 @@ public class ItemDAO implements Dao<Item>{
 	@Override
 	public Item read(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("SELECT * FROM item WHERE id = ?");) {
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM item WHERE ItemId = ?");) {
 			statement.setLong(1, id);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
@@ -119,6 +120,12 @@ public class ItemDAO implements Dao<Item>{
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
+		return null;
+	}
+
+	@Override
+	public Order modelFromResultSetReadAll(ResultSet resultSet) throws SQLException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

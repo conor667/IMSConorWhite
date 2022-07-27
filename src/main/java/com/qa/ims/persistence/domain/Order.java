@@ -30,8 +30,6 @@ public class Order {
 	}
 	public Order(Long id, Long itemId, Long quantity) {
 		this.id = id;
-		this.itemId = itemId;
-		this.quantity = quantity;
 	}
 	
 	public Order(Long customerId) {
