@@ -89,7 +89,8 @@ public class Order {
 		Order other = (Order) obj;
 		return Objects.equals(customerId, other.customerId) && Objects.equals(id, other.id)
 				&& Objects.equals(itemId, other.itemId) && Objects.equals(quantity, other.quantity)
-				&& Objects.equals(totalCost, other.totalCost);
+				&& Double.doubleToLongBits(totalCost) == Double.doubleToLongBits(other.totalCost);
 	}
+
 
 }

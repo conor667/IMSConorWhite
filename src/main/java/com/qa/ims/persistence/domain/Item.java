@@ -76,10 +76,5 @@ public class Item {
 				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
 				&& Objects.equals(stock, other.stock);
 	}
-
-	public static void add(Item item) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

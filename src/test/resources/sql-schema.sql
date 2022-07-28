@@ -1,6 +1,7 @@
 
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS order;
 
 CREATE TABLE IF NOT EXISTS customers (
     id INT(11) NOT NULL AUTO_INCREMENT,
@@ -15,4 +16,11 @@ CREATE TABLE IF NOT EXISTS item (
 	price INT,
 	stock INT,
 	PRIMARY KEY (`ItemId`)
+);
+
+CREATE TABLE IF NOT EXISTS `order` (
+	OrderId BIGINT AUTO_increment,
+	CustomerId BIGINT,
+	FOREIGN KEY (CustomerId) references customers(id)
+	PRIMARY KEY (`order`)
 );
