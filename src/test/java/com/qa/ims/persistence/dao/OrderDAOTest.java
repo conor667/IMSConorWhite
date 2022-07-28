@@ -31,13 +31,19 @@ public class OrderDAOTest {
 		assertEquals(1, DAO.delete(1));
 	}
 	@Test
+	public void testDeleteItem() {
+		assertEquals(1, DAO.deleteItem(1));
+	}
+	@Test
 	public void testCreate() {
 		final Order order = new Order(1L,1L);
 		assertEquals(order, DAO.create(order));
 	}
 	
-	@Test void testReadAll() {
+	@Test 
+	public void testReadAll() {
 		List<Order> expected = new ArrayList<>();
 		assertEquals(expected, DAO.readAll());
 	}
 }
+

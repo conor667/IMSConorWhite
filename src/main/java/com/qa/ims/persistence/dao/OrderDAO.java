@@ -41,7 +41,7 @@ public class OrderDAO implements Dao<Order> {
 						"| customerId: " + resultSet.getLong("CustomerId") +
 						"| Cusomer Name: " + resultSet.getString("first_name") + " " + resultSet.getString("surname") +
 						"| Quantity: " + resultSet.getLong("Quantity")); 
-			}				
+			}
 			//return order;
 		} catch (SQLException e) { 
 			LOGGER.debug(e);
@@ -76,21 +76,6 @@ public class OrderDAO implements Dao<Order> {
 		return null; 
 	}
 	@Override
-	public Order read(Long id) {
-		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("SELECT * FROM `order` WHERE OrderId = ?");) {
-			statement.setLong(1, id);
-			try (ResultSet resultSet = statement.executeQuery();) {
-				resultSet.next();
-				return modelFromResultSet(resultSet);
-			}
-		} catch (Exception e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-		}
-		return null;
-	}
-	@Override
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
@@ -120,7 +105,6 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return order; 
 	} 
-	
 	public int deleteItem(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("DELETE FROM OrderedItems WHERE fk_OrderId = ?");) {
@@ -151,5 +135,9 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.error(e.getMessage());
 		}
 		return 1;
+	}
+	@Override
+	public Order read(Long id) {
+		return null;
 	}
 }
