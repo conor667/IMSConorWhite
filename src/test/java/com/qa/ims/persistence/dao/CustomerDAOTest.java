@@ -6,14 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-=======
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
->>>>>>> 8df77609e105ffd30f749713b2e689b614ae6209
 
 import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.utils.DBUtils;

@@ -71,8 +71,7 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [id= " + getId() + ", itemID= " + getItemId() + ", customerId= " + getCustomerId() + ", quantity=" + getQuantity()
-				+ "]";
+		return "Order [id= " + getId() + ", customerId= " + getCustomerId() + "]";
 	}
 	@Override
 	public int hashCode() {
