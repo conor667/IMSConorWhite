@@ -1,10 +1,13 @@
 Coverage: 34%
-# Project Title
+# Inventory Management System!
 
-One Paragraph of project description goes here
+# Hello! Welcome to the Inventory Management System! 
+This system is designed to keep track of Customers, Items and Orders. You are able to Create, Read, Update and Delete Customers, Items and Orders in this nifty little application. 
 
 ## Getting Started
 
+To get started simply fork this repo and clone it down to your local machine. You will then need to go into db.properties and set the db.user and db.password to the mySql username and password that is set on your local machine. 
+After this you will need to 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
