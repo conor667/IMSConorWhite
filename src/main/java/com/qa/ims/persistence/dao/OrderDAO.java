@@ -43,7 +43,7 @@ public class OrderDAO implements Dao<Order> {
 						"| Quantity: " + resultSet.getLong("Quantity")); 
 			}				
 			//return order;
-		} catch (SQLException e) {
+		} catch (SQLException e) { 
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
@@ -51,7 +51,7 @@ public class OrderDAO implements Dao<Order> {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT item.price*OrderedItems.Quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");) {
 			List<Order> order = new ArrayList<>();
-			while (resultSet.next()) {
+			while (resultSet.next()) {  
 				order.add(modelFromResultSet2(resultSet));
 				LOGGER.info("| TotalCost : " + resultSet.getDouble("TotalCost"));
 			}
@@ -120,6 +120,18 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return order; 
 	} 
+	
+	public int deleteItem(long id) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM OrderedItems WHERE fk_OrderId = ?");) {
+			statement.setLong(1, id);
+			statement.executeUpdate(); 
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 1;
+	}
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();

@@ -37,22 +37,34 @@ public class OrderController implements CrudController<Order>{
 	}
 	@Override
 	public Order update() {
-		LOGGER.info("Please enter the id of the Order you would like to update");
-		Long id = utils.getLong();
-		LOGGER.info("Please enter the Itemid you would like to add");
-		Long itemId = utils.getLong();
-		LOGGER.info("Please enter quantity");
-		Long Quantity = utils.getLong();
-		Order order = orderDAO.update(new Order(id, itemId, Quantity));
-		LOGGER.info("Order Updated \n");
-		return order;
+			LOGGER.info("Please enter the id of the Order you would like to update");
+			Long id = utils.getLong();
+			LOGGER.info("Please enter the Itemid you would like to add");
+			Long itemId = utils.getLong();
+			LOGGER.info("Please enter quantity");
+			Long Quantity = utils.getLong();
+			Order order = orderDAO.update(new Order(id, itemId, Quantity));
+			LOGGER.info("Order Updated \n");
+			return order;
 	}
+
 	@Override
 	public int delete() {
+		LOGGER.info("Would you like to delete an Order or an Item?");
+		String choice = utils.getString().toLowerCase();
+		switch (choice) {
+		case "item":
+			LOGGER.info("Please enter item ID you would like to delete");
+			Long Itemid = utils.getLong();
+			LOGGER.info("Item deleted \n");
+			return orderDAO.deleteItem(Itemid);
+		case "order":
 		LOGGER.info("Please enter the id of the Order you would like to delete from your Order");
 		Long id = utils.getLong();
 		LOGGER.info("Order has been deleted! \n");
-		return orderDAO.delete(id);
+		return orderDAO.delete(id)
+		}
+		return 1;
 	}
 
 }
