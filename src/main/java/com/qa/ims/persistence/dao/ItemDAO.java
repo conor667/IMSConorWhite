@@ -19,7 +19,7 @@ public class ItemDAO implements Dao<Item>{
 	public static final Logger LOGGER = LogManager.getLogger();
 	
 	public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("ItemId");
+		Long id = resultSet.getLong("itemId");
 		String Itemname = resultSet.getString("Itemname");
 		float price = resultSet.getFloat("price");
 		Long stock = resultSet.getLong("stock");
@@ -47,7 +47,7 @@ public class ItemDAO implements Dao<Item>{
 	public Item readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM item ORDER BY ItemId DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM item ORDER BY itemId DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class ItemDAO implements Dao<Item>{
 		// TODO Auto-generated method stub
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("UPDATE item SET itemName = ?, price = ?, stock = ? WHERE ItemId = ?");) {
+						.prepareStatement("UPDATE item SET itemName = ?, price = ?, stock = ? WHERE itemId = ?");) {
 			statement.setString(1, item.getItemname());
 			statement.setDouble(2, item.getPrice());
 			statement.setLong(3,item.getStock());
@@ -94,7 +94,7 @@ public class ItemDAO implements Dao<Item>{
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("DELETE FROM item WHERE ItemId = ?");) {
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM item WHERE itemId = ?");) {
 			statement.setLong(1, id);
 			return statement.executeUpdate();
 		} catch (Exception e) {
@@ -106,7 +106,7 @@ public class ItemDAO implements Dao<Item>{
 	@Override
 	public Item read(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("SELECT * FROM item WHERE ItemId = ?");) {
+				PreparedStatement statement = connection.prepareStatement("SELECT * FROM item WHERE itemId = ?");) {
 			statement.setLong(1, id);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				resultSet.next();
