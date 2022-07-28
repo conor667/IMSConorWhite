@@ -23,7 +23,7 @@ public class ItemDAO implements Dao<Item>{
 		String Itemname = resultSet.getString("Itemname");
 		float price = resultSet.getFloat("price");
 		Long stock = resultSet.getLong("stock");
-		return new Item(id, Itemname, price,stock);
+		return new Item(id, Itemname, price,stock); 
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class ItemDAO implements Dao<Item>{
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM item");) {
 			List<Item> item = new ArrayList<>();
-			while (resultSet.next()) {
+			while (resultSet.next()) { 
 				item.add(modelFromResultSet(resultSet));
 			}
 			return item;
@@ -68,13 +68,11 @@ public class ItemDAO implements Dao<Item>{
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
+			LOGGER.debug(e); 
+			LOGGER.error(e.getMessage()); 
 		}
 		return null;
 	}
-
-
 	@Override
 	public Item update(Item item) {
 		// TODO Auto-generated method stub
@@ -84,16 +82,15 @@ public class ItemDAO implements Dao<Item>{
 			statement.setString(1, item.getItemname());
 			statement.setDouble(2, item.getPrice());
 			statement.setLong(3,item.getStock());
-			statement.setLong(3, item.getId());
+			statement.setLong(4, item.getId());
 			statement.executeUpdate();
 			return read(item.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return null;
+		return item;
 	}
-
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -106,7 +103,6 @@ public class ItemDAO implements Dao<Item>{
 		}
 		return 0;
 	}
-
 	@Override
 	public Item read(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -122,11 +118,9 @@ public class ItemDAO implements Dao<Item>{
 		}
 		return null;
 	}
-
 	@Override
 	public Order modelFromResultSet2(ResultSet resultSet) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

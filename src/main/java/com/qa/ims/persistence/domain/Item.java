@@ -11,7 +11,7 @@ public class Item {
 	public Item(String itemname, double price, Long stock) {
 		this.setItemname(itemname);
 		this.setPrice(price);
-		this.setStock(stock);
+		this.setStock(stock); 
 	}
 
 	public Item(Long id, String Itemname, double price, Long stock) {
@@ -20,11 +20,6 @@ public class Item {
 		this.setPrice(price);
 		this.setStock(stock);
 	}
-
-	public Item(Long price2, Long stock2, String itemName2) {
-		// TODO Auto-generated constructor stub
-	}
-
 
 	public Long getId() {
 		return id;
@@ -51,7 +46,7 @@ public class Item {
 	}
 
 	public Long getStock() {
-		return stock;
+		return stock; 
 	}
 
 	public void setStock(Long stock) {

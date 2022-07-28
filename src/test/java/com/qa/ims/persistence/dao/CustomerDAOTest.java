@@ -15,8 +15,8 @@ import com.qa.ims.utils.DBUtils;
 public class CustomerDAOTest {
 
 	private final CustomerDAO DAO = new CustomerDAO();
-
-	@BeforeEach
+ 
+	@BeforeEach 
 	public void setup() {
 		DBUtils.connect();
 		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-data.sql");

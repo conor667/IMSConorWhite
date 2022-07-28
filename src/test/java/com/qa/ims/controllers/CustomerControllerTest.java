@@ -19,7 +19,7 @@ import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.utils.Utils;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerControllerTest {
+public class CustomerControllerTest { 
 
 	@Mock
 	private Utils utils;

@@ -16,13 +16,13 @@ public class ItemController implements CrudController<Item> {
 	public ItemController(ItemDAO itemDAO, Utils utils) {
 		super();
 		this.itemDAO = itemDAO;
-		this.utils = utils;
+		this.utils = utils; 
 	}
 
 	@Override
 	public List<Item> readAll() {
 		List<Item> items = itemDAO.readAll();
-		for (Item item : items) {
+		for (Item item : items) { 
 			LOGGER.info(item);
 		}
 		return items;
@@ -43,7 +43,7 @@ public class ItemController implements CrudController<Item> {
 
 	@Override
 	public Item update() {
-		LOGGER.info("Please enter the id of the customer you would like to update");
+		LOGGER.info("Please enter the id of the Item you would like to update");
 		Long id = utils.getLong();
 		LOGGER.info("Please enter an Item name");
 		String itemName = utils.getString();
@@ -52,7 +52,7 @@ public class ItemController implements CrudController<Item> {
 		LOGGER.info("please enter new stock amount");
 		Long stock = utils.getLong();
 		Item item = itemDAO.update(new Item(id, itemName, price, stock));
-		LOGGER.info("Item Updated \n");
+		LOGGER.info("Item Updated \n"); 
 		return item;
 	}
 

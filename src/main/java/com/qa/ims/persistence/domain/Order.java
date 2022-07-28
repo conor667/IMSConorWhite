@@ -10,7 +10,7 @@ public class Order {
 	private Long quantity; 
 	private double totalCost;
 	
-	public Order(Long id, Long customerId, Long itemId, Long quantity, double totalCost) {
+	public Order(Long id, Long customerId, Long itemId, Long quantity, double totalCost) { 
 		this.id = id;
 		this.itemId = itemId;
 		this.customerId = customerId;

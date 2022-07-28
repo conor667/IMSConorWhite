@@ -22,7 +22,7 @@ public class OrderDAO implements Dao<Order> {
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("OrderId");
 		Long customerId = resultSet.getLong("customerId");
-		return new Order(id, customerId);
+		return new Order(id, customerId);  
 	}
 	
 	@Override
@@ -44,14 +44,25 @@ public class OrderDAO implements Dao<Order> {
 						"| customerId: " + resultSet.getLong("CustomerId") +
 						"| Cusomer Name: " + resultSet.getString("first_name") + " " + resultSet.getString("surname") +
 						"| Quantity: " + resultSet.getLong("Quantity"));
-			}	ResultSet totalCost = statement.executeQuery("SELECT item.price*OrderedItems.quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");		
-				LOGGER.info("| TotalCost : " + totalCost.getDouble("TotalCost"));
+			}				
+			//return order;
+		} catch (SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT item.price*OrderedItems.quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");) {
+			List<Order> order = new ArrayList<>();
+			while (resultSet.next()) {
+				order.add(modelFromResultSet2(resultSet));
+				LOGGER.info("| TotalCost : " + resultSet.getDouble("TotalCost"));
+			}
 			return order;
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-
 		return new ArrayList<>();
 	}
 	@Override
@@ -112,7 +123,7 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return null;
+		return order;
 	}
 	@Override
 	public int delete(long id) {

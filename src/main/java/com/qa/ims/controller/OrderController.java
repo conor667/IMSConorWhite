@@ -13,8 +13,8 @@ public class OrderController implements CrudController<Order>{
 	
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	private OrderDAO orderDAO;
-	private Utils utils;
+	private OrderDAO orderDAO; 
+	private Utils utils; 
 	
 	public OrderController(OrderDAO orderDAO, Utils utils) {
 		super();
