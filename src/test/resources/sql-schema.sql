@@ -13,11 +13,11 @@ CREATE TABLE IF NOT EXISTS customers (
 );
 
 CREATE TABLE IF NOT EXISTS item (
-	ItemId BIGINT AUTO_INCREMENT,
+	itemId BIGINT AUTO_INCREMENT,
 	itemName VARCHAR(20),
 	price INT,
 	stock INT,
-	PRIMARY KEY (`ItemId`)
+	PRIMARY KEY (`itemId`)
 );
 
 CREATE TABLE IF NOT EXISTS `order` (
@@ -35,5 +35,5 @@ CREATE TABLE IF NOT EXISTS OrderedItems (
 	TotalCost INT,
 	PRIMARY KEY (`Id`),
 	FOREIGN KEY (fk_OrderId) references `order`(OrderId),
-	FOREIGN KEY (fk_itemId) references item(ItemId)
+	FOREIGN KEY (fk_itemId) references item(itemId)
 );

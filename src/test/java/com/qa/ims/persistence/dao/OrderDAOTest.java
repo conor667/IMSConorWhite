@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
@@ -25,9 +26,19 @@ public class OrderDAOTest {
 	public void testUpdate() {
 		final Order updated = new Order(1L, 1L, 1L);
 		assertEquals(updated, DAO.update(updated));
-	}
+	} 
 	@Test
 	public void testDelete() {
 		assertEquals(1, DAO.delete(1));
+	}
+	@Test
+	public void testCreate() {
+		final Order order = new Order(1L,1L);
+		assertEquals(order, DAO.create(order));
+	}
+	
+	@Test void testReadAll() {
+		List<Order> expected = new ArrayList<>();
+		assertEquals(expected, DAO.readAll());
 	}
 }

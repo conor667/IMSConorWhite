@@ -24,9 +24,9 @@ public class Order {
 		this.totalCost = totalCost;
 	}
 ;
-	public Order(Long id, Long itemId) {
+	public Order(Long id, Long customerId) {
 		this.id = id;
-		this.itemId = itemId;
+		this.customerId = customerId;
 	}
 	public Order(Long id, Long itemId, Long quantity) {
 		this.id = id;
@@ -43,7 +43,7 @@ public class Order {
 		return id;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		this.id = id; 
 	}
 	public Long getItemId() {
 		return itemId;

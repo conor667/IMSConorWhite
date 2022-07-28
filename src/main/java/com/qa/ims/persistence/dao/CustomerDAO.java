@@ -89,7 +89,7 @@ public class CustomerDAO implements Dao<Customer> {
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers WHERE id = ?");) {
 			statement.setLong(1, id);
 			try (ResultSet resultSet = statement.executeQuery();) {
-				resultSet.next();
+				resultSet.next(); 
 				return modelFromResultSet(resultSet);
 			}
 		} catch (Exception e) {
