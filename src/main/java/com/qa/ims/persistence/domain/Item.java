@@ -60,24 +60,21 @@ public class Item {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Itemname, id, price);
+		return Objects.hash(Itemname, id, price, stock);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
-			return true;if (obj == null)
-				return false;
-			if(getClass() != obj.getClass())
-				return false;Item other = (Item) obj;
-				return Objects.equals(Itemname, other.Itemname) 
-						&& Objects.equals(id, other.id)
-						&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price);
-	}
-
-	public void setQuantity(long long1) {
-		// TODO Auto-generated method stub
-		
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		return Objects.equals(Itemname, other.Itemname) && Objects.equals(id, other.id)
+				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
+				&& Objects.equals(stock, other.stock);
 	}
 
 	public static void add(Item item) {

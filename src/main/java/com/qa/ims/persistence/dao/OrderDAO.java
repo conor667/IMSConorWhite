@@ -22,7 +22,7 @@ public class OrderDAO implements Dao<Order> {
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("OrderId");
 		Long customerId = resultSet.getLong("customerId");
-		return new Order(id, customerId);  
+		return new Order(id, customerId);   
 	}
 	
 	@Override
