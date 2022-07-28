@@ -73,13 +73,17 @@ public class OrderControllerTest {
 	@Test
 	public void testDelete() {
 		final long Id = 1L;
+		final String choice = "order";
 
+		Mockito.when(utils.getString()).thenReturn(choice);
 		Mockito.when(utils.getLong()).thenReturn(Id);
 		Mockito.when(dao.delete(Id)).thenReturn(1);
 
-		assertEquals(1L, this.controller.delete());
-
+		assertEquals(1, this.controller.delete());
+		
+		Mockito.verify(utils,Mockito.times(1)).getString();
 		Mockito.verify(utils, Mockito.times(1)).getLong();
 		Mockito.verify(dao, Mockito.times(1)).delete(Id);
 	}
+
 }

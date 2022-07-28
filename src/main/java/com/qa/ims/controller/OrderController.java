@@ -50,7 +50,7 @@ public class OrderController implements CrudController<Order>{
 
 	@Override
 	public int delete() {
-		LOGGER.info("Would you like to delete an Order or an Item?");
+		LOGGER.info("Would you like to delete an Order[1] or an Item?[2]");
 		String choice = utils.getString().toLowerCase();
 		switch (choice) {
 		case "item":
@@ -59,10 +59,10 @@ public class OrderController implements CrudController<Order>{
 			LOGGER.info("Item deleted \n");
 			return orderDAO.deleteItem(Itemid);
 		case "order":
-		LOGGER.info("Please enter the id of the Order you would like to delete from your Order");
-		Long id = utils.getLong();
-		LOGGER.info("Order has been deleted! \n");
-		return orderDAO.delete(id)
+			LOGGER.info("Please enter the id of the Order you would like to delete from your Order");
+			Long id = utils.getLong();
+			LOGGER.info("Order has been deleted! \n");
+			return orderDAO.delete(id);
 		}
 		return 1;
 	}

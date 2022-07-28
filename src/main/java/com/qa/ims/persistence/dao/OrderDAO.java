@@ -138,7 +138,7 @@ public class OrderDAO implements Dao<Order> {
 				PreparedStatement statement = connection.prepareStatement("DELETE FROM OrderedItems WHERE fk_OrderId = ?");) {
 			statement.setLong(1, id);
 			statement.executeUpdate(); 
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
