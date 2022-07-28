@@ -35,33 +35,23 @@ public class OrderDAO implements Dao<Order> {
 	public List<Order> readAll() { 
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` o JOIN OrderedItems oi ON o.OrderId=oi.fk_OrderId JOIN item i ON i.ItemId=oi.fk_itemId");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` o JOIN OrderedItems oi ON o.OrderId=oi.fk_OrderId JOIN item i ON i.ItemId=oi.fk_itemId JOIN customers c ON c.id=o.CustomerId");) {
 			List<Order> order = new ArrayList<>();
 			while (resultSet.next()) {
 				order.add(modelFromResultSet(resultSet));
 				LOGGER.info("OrderId: " + resultSet.getLong("OrderId") +
 						"|Item: " + resultSet.getString("itemName") + 
-						"| customerId: " + resultSet.getLong("CustomerId") + 
+						"| customerId: " + resultSet.getLong("CustomerId") +
+						"| Cusomer Name: " + resultSet.getString("first_name") + " " + resultSet.getString("surname") +
 						"| Quantity: " + resultSet.getLong("Quantity"));
-			}
-			//return order;
-		} catch (SQLException e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-		}
-		try (Connection connection = DBUtils.getInstance().getConnection();
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT item.price*OrderedItems.quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");) {
-			List<Order> order = new ArrayList<>();
-			while (resultSet.next()) {
-				order.add(modelFromResultSet2(resultSet));
-				LOGGER.info("| TotalCost : " + resultSet.getDouble("TotalCost"));
-			}
+			}	ResultSet totalCost = statement.executeQuery("SELECT item.price*OrderedItems.quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");		
+				LOGGER.info("| TotalCost : " + totalCost.getDouble("TotalCost"));
 			return order;
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
+
 		return new ArrayList<>();
 	}
 	@Override
