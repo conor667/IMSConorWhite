@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS OrderedItems (
 	Id BIGINT AUTO_INCREMENT,
 	fk_OrderId BIGINT ,
 	fk_itemId BIGINT,
-	quantity INT,
+	Quantity INT,
 	TotalCost INT,
 	PRIMARY KEY (`Id`),
-	FOREIGN KEY (fk_OrderId) references `order`(OrderId) ON DELETE CASCADE,
-	FOREIGN KEY (fk_itemId) references item(ItemId)ON DELETE CASCADE
+	FOREIGN KEY (fk_OrderId) references `order`(OrderId),
+	FOREIGN KEY (fk_itemId) references item(ItemId)
 );

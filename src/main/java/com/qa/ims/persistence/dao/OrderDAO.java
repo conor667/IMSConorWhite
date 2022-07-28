@@ -123,27 +123,27 @@ public class OrderDAO implements Dao<Order> {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return order;
-	}
+		return order; 
+	} 
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("DELETE FROM OrderedItems WHERE fk_OrderId = ?");) {
 			statement.setLong(1, id);
-			statement.executeUpdate();
+			statement.executeUpdate(); 
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				PreparedStatement statement = connection.prepareStatement("DELETE FROM `order` WHERE Orderid = ?");) {
+				PreparedStatement statement = connection.prepareStatement("DELETE FROM `order` WHERE OrderId = ?");) {
 			statement.setLong(1, id);
 			statement.executeUpdate();
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
-		return 0;
+		return 1;
 	}
 
 }
