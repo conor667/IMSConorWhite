@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
 public class CustomerDAO implements Dao<Customer> {
@@ -88,7 +89,7 @@ public class CustomerDAO implements Dao<Customer> {
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers WHERE id = ?");) {
 			statement.setLong(1, id);
 			try (ResultSet resultSet = statement.executeQuery();) {
-				resultSet.next();
+				resultSet.next(); 
 				return modelFromResultSet(resultSet);
 			}
 		} catch (Exception e) {
@@ -138,6 +139,12 @@ public class CustomerDAO implements Dao<Customer> {
 			LOGGER.error(e.getMessage());
 		}
 		return 0;
+	}
+
+	@Override
+	public Order modelFromResultSet2(ResultSet resultSet) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
