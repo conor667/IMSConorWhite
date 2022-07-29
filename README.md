@@ -45,6 +45,7 @@ You will then need to follow the steps on the website to install.
 Follow this link to download MySql on your local machine. https://dev.mysql.com/downloads/mysql/
 
 Make sure to select the correct operating system. 
+
 ![image](https://user-images.githubusercontent.com/49778033/181753004-61a36926-6d79-4e01-8161-a683024e1421.png)
 
 then click download.
