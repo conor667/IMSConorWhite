@@ -32,7 +32,8 @@ public class OrderDAO implements Dao<Order> {
 	public List<Order> readAll() { 
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` o JOIN OrderedItems oi ON o.OrderId=oi.fk_OrderId JOIN item i ON i.itemId=oi.fk_itemId JOIN customers c ON c.id=o.CustomerId");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM `order` o JOIN OrderedItems oi ON o.OrderId=oi.fk_OrderId JOIN item i ON i.itemId=oi.fk_itemId JOIN customers c ON c.id=o.CustomerId"
+						+ "SELECT item.price*OrderedItems.Quantity as TotalCost FROM item,OrderedItems WHERE item.itemId=OrderedItems.fk_itemId;");) {
 			List<Order> order = new ArrayList<>();
 			while (resultSet.next()) {
 				order.add(modelFromResultSet(resultSet));
@@ -40,11 +41,11 @@ public class OrderDAO implements Dao<Order> {
 						"|Item: " + resultSet.getString("itemName") + 
 						"| customerId: " + resultSet.getLong("CustomerId") +
 						"| Cusomer Name: " + resultSet.getString("first_name") + " " + resultSet.getString("surname") +
-						"| Quantity: " + resultSet.getLong("Quantity")); 
-			}
+						"| Quantity: " + resultSet.getLong("Quantity") +
+						"| Total Cost " + resultSet.getLong("totalCost"));
+			} 
 			//return order;
 		} catch (SQLException e) { 
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -57,7 +58,6 @@ public class OrderDAO implements Dao<Order> {
 			}
 			return order;
 		} catch (SQLException e) {
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return new ArrayList<>();
@@ -70,7 +70,6 @@ public class OrderDAO implements Dao<Order> {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		} 
 		return null; 
@@ -84,7 +83,6 @@ public class OrderDAO implements Dao<Order> {
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return null;
@@ -100,7 +98,6 @@ public class OrderDAO implements Dao<Order> {
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return order; 
@@ -111,7 +108,6 @@ public class OrderDAO implements Dao<Order> {
 			statement.setLong(1, id);
 			statement.executeUpdate(); 
 		} catch (Exception e) {
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return 1;
@@ -123,7 +119,6 @@ public class OrderDAO implements Dao<Order> {
 			statement.setLong(1, id);
 			statement.executeUpdate(); 
 		} catch (Exception e) { 
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -131,7 +126,6 @@ public class OrderDAO implements Dao<Order> {
 			statement.setLong(1, id);
 			statement.executeUpdate();
 		} catch (Exception e) {
-			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return 1;
