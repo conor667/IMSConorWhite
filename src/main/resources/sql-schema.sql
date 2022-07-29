@@ -20,6 +20,7 @@ OrderId bigint KEY AUTO_increment,
 CustomerId bigint ,
 FOREIGN KEY (CustomerId) references customers(id)
 );
+
 Create TABLE OrderedItems (
 Id bigint key auto_increment,
 fk_OrderId bigint ,
