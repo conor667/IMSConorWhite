@@ -14,9 +14,13 @@ After this you will need to
 ### Prerequisites
 
 You will need the following : 
+
 Eclipse
+
 JDK 8 
+
 MAVEN
+
 MySql
 
 ### Obtraining Prerequisites
