@@ -10,7 +10,16 @@ To get started simply fork this repo and clone it down to your local machine. Yo
 After this you will need to 
 
 ### Prerequisites
-#Eclipse 
+
+You will need the following : 
+Eclipse
+JDK 8 
+MAVEN
+MySql
+
+### Obtraining Prerequisites
+
+##Eclipse 
 To run this program the easiest way is through the IDE Eclipse. You can find a link here https://www.eclipse.org/downloads/
 
 Click on Get Eclipse IDE 2022-06 
@@ -19,7 +28,7 @@ Click on Get Eclipse IDE 2022-06
 
 Then click on the Download button. This will download the eclipse installer on your local machine. Open the .exe file and follow the steps on screen.
 
-#JDK 
+##JDK 
 - You will need a version of java JDK downloaded in order to run the program. I have used JDK 8 for this project so it is not reccomended to run newer versions as some 
   features may not work. 
   You can find a version here : https://www.oracle.com/tr/java/technologies/javase/javase8-archive-downloads.html
@@ -27,23 +36,22 @@ Then click on the Download button. This will download the eclipse installer on y
   ![image](https://user-images.githubusercontent.com/49778033/181752621-1c4fc053-0b11-4c22-95cf-a5212c9c8eab.png)
   ![image](https://user-images.githubusercontent.com/49778033/181752652-6f6793ec-5a16-4d4c-8c1a-b465253d8f53.png)
   
-#Maven
+##Maven
 To download Maven on your computer follow this link https://maven.apache.org/install.html 
+
+You will then need to follow the steps on the website to install.
+
+##MySql 
+Follow this link to download MySql on your local machine. https://dev.mysql.com/downloads/mysql/
 
 Make sure to select the correct operating system. 
 ![image](https://user-images.githubusercontent.com/49778033/181753004-61a36926-6d79-4e01-8161-a683024e1421.png)
 
-You will then need to follow the steps on the website to install. 
+then click download.
 
-#MySql 
-Follow this link to download MySql on your local machine. 
+![image](https://user-images.githubusercontent.com/49778033/181753125-62b20387-46f1-4774-8d74-075b49d2cc32.png)
 
-
-```
-Give examples
-```
-
-### Installing
+### Running the program
 
 A step by step series of examples that tell you how to get a development env running
 
