@@ -1,4 +1,4 @@
-Coverage: 34%
+Coverage: 66.0%
 # Inventory Management System!
 
 # Hello! Welcome to the Inventory Management System! 
@@ -8,11 +8,17 @@ This system is designed to keep track of Customers, Items and Orders. You are ab
 
 To get started simply fork this repo and clone it down to your local machine. You will then need to go into db.properties and set the db.user and db.password to the mySql username and password that is set on your local machine. 
 After this you will need to 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
+Eclipse - To run this program the easiest way is through the IDE Eclipse. You can find a link here https://www.eclipse.org/downloads/
 
-What things you need to install the software and how to install them
+Click on Get Eclipse IDE 2022-06 
+![image](https://user-images.githubusercontent.com/49778033/181751334-c50fb8aa-8a7b-413c-a1e4-f636fcb6e85a.png)
+
+
+
+
+JDK - You will need a version of java JDK downloaded in order to run the program. you can find a link to the latests version here
 
 ```
 Give examples
