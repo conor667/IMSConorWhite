@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 
 CREATE TABLE IF NOT EXISTS OrderedItems (
 	Id BIGINT AUTO_INCREMENT,
-	fk_OrderId BIGINT ,
+	fk_OrderId BIGINT,
 	fk_itemId BIGINT,
 	Quantity INT,
 	TotalCost INT,

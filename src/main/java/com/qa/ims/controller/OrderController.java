@@ -37,32 +37,40 @@ public class OrderController implements CrudController<Order>{
 	}
 	@Override
 	public Order update() {
-			LOGGER.info("Please enter the id of the Order you would like to update");
+			LOGGER.info("Please enter the id of the Order you would like to add an item to");
 			Long id = utils.getLong();
-			LOGGER.info("Please enter the Itemid you would like to add");
+			LOGGER.info("Please enter the Itemid you would like to add to your order");
 			Long itemId = utils.getLong();
-			LOGGER.info("Please enter quantity");
+			LOGGER.info("Please enter the quantity you would like");
 			Long Quantity = utils.getLong();
 			Order order = orderDAO.update(new Order(id, itemId, Quantity));
-			LOGGER.info("Order Updated \n");
+			LOGGER.info("Item added \n");
 			return order;
 	}
 
 	@Override
 	public int delete() {
-		LOGGER.info("Would you like to delete an Order[1] or an Item?[2]");
+		boolean running = true;
+		while (running) {
+		LOGGER.info("Would you like to delete an Order or an Item?");
 		String choice = utils.getString().toLowerCase();
-		switch (choice) {
-		case "item":
-			LOGGER.info("Please enter item ID you would like to delete");
-			Long Itemid = utils.getLong();
-			LOGGER.info("Item deleted \n");
-			return orderDAO.deleteItem(Itemid);
-		case "order":
-			LOGGER.info("Please enter the id of the Order you would like to delete from your Order");
-			Long id = utils.getLong();
-			LOGGER.info("Order has been deleted! \n");
-			return orderDAO.delete(id);
+			switch (choice) {
+			case "item":
+				LOGGER.info("Please enter item ID you would like to delete");
+				Long Itemid = utils.getLong();
+				LOGGER.info("Item deleted \n");
+				running = false;
+				return orderDAO.deleteItem(Itemid);
+			case "order":
+				LOGGER.info("Please enter the id of the Order you would like to delete from your Order");
+				Long id = utils.getLong();
+				LOGGER.info("Order has been deleted! \n");
+				running = false;
+				return orderDAO.delete(id);
+			default:
+				System.out.println("please enter `order` or `item` \n");
+				break;
+			}
 		}
 		return 1;
 	}
